@@ -18,9 +18,7 @@ const FeaturedRows = ({ id, title, description }) => {
       {
         ...,dishes[]->
         {
-          type->{
-            name
-          }
+         ...,
         }
       }
     }[0]

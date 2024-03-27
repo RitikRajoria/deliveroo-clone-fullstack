@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { StarIcon, LocationMarkerIcon } from "react-native-heroicons/solid";
 import { MapPinIcon } from "react-native-heroicons/outline";
 import sanityClient, { urlFor } from "../sanity";
+import { useNavigation } from "@react-navigation/native";
 
 const RestaurantCard = ({
   id,
@@ -17,6 +18,7 @@ const RestaurantCard = ({
   lat,
 }) => {
   const [categoryName, setcategoryName] = useState();
+  const navigation = useNavigation();
 
   useEffect(() => {
     sanityClient
@@ -32,7 +34,23 @@ const RestaurantCard = ({
   }, []);
 
   return (
-    <TouchableOpacity className="bg-white mr-3 shadow-sm">
+    <TouchableOpacity
+      className="bg-white mr-3 shadow-sm"
+      onPress={() => {
+        navigation.navigate("Restaurant", {
+          id,
+          imgUrl,
+          title,
+          rating,
+          categoryName,
+          address,
+          short_description,
+          dishes,
+          long,
+          lat,
+        });
+      }}
+    >
       <Image
         className="h-36 w-64 rounded-sm"
         source={{
